@@ -9,11 +9,6 @@ const enableWorkers = os.cpus().length !== 1;
 module.exports = {
     //// HOSTING CONFIGURATION ////
 
-    bindingAddress: '127.0.0.1',
-    port: 8080,
-    crossDomainPort: 8081,
-    publicDir: path.join(__dirname, '../public'), // set to null to disable
-
     // enable or disable multithreading
     enableWorkers,
     workers: os.cpus().length,
@@ -32,7 +27,7 @@ module.exports = {
     // },
 
     // enforce a password for creating new sessions. set to null to disable
-    password: 'sharkie4life',
+    password: 'Thuanson',
 
     // disable or enable localStorage sync (turn off if clients send over huge localStorage data, resulting in huge memory usages)
     disableLocalStorageSync: false,
@@ -43,7 +38,12 @@ module.exports = {
     // caching options for js rewrites. (disk caching not recommended for slow HDD disks)
     // recommended: 50mb for memory, 5gb for disk
     // jsCache: new RammerheadJSMemCache(5 * 1024 * 1024),
-    jsCache: new RammerheadJSFileCache(path.join(__dirname, '../cache-js'), 5 * 1024 * 1024 * 1024, 50000, enableWorkers),
+    jsCache: new RammerheadJSFileCache(
+        path.join(__dirname, '../cache-js'),
+        5 * 1024 * 1024 * 1024,
+        50000,
+        enableWorkers
+    ),
 
     //// REWRITE HEADER CONFIGURATION ////
 
@@ -73,7 +73,7 @@ module.exports = {
             staleCheckInterval: 1000 * 60 * 60 * 6 // 6 hours
         },
         // corrupted session files happens when nodejs exits abruptly while serializing the JSON sessions to disk
-        deleteCorruptedSessions: true,
+        deleteCorruptedSessions: true
     },
 
     //// LOGGING CONFIGURATION ////
